@@ -1,0 +1,1 @@
+import{ca as a,cK as o,ci as r,cL as c,cM as p,cN as i}from"./entry.0e8e42dd.js";const m="recharge-item",u=a(m,e=>{function t(){const s={scene:o.正常,step:r.HOME,item:e.props.item};c(p.h5_pay_item_click,{amount:e.props.item.amount,number:e.props.item.coin,good_id:e.props.item.payItemDisplayMethods[0].methods[0].recharge_id}),i(s)}return{exposed:{clickItem:t}}});export{u as setup};
