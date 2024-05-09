@@ -1,0 +1,1 @@
+System.register(["./entry-legacy.691d0af5.js"],(function(e,t){"use strict";var r;return{setters:[e=>{r=e.d2}],execute:function(){e("info",(e=>r("https://arab-pk.badambiz.com/api/room/get_share_detail/",{info:e}))),e("a",1)}}}));
