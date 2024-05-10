@@ -1,10 +1,10 @@
 
 
-const cacheVersion = 'v1.0.294'
+const cacheVersion = 'v1.0.297'
 
-console.log('service worker version', '1.0.294')
+console.log('service worker version', '1.0.297')
 
-const routes = ['home','pay','test','login','fines','']
+const routes = ['home','pay','test','login','fines','feedback','feedback-success','']
 
 const public_path = '/'
 
@@ -37,13 +37,14 @@ function clearOldCache() {
 }
 
 self.addEventListener('activate', (event) => {
-  console.log('service worker active', '1.0.294', event)
+  console.log('service worker active', '1.0.297', event)
   event.waitUntil(clearOldCache())
   event.waitUntil(clients.claim())
 })
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
+  event.waitUntil(addResourcesToCache(['home/index.html','pay/index.html','test/index.html','login/index.html','fines/index.html','feedback/index.html','feedback-success/index.html','/index.html']))
 })
 
 const strategies = {
@@ -77,7 +78,7 @@ const networkFirst = async (event) => {
     const url = request.url.split('?')[0]
     const r = matchRoute(url)
     if (r) {
-      const index = getIndexUrl()
+      const index = getIndexUrl(url)
       request = index
     }
     const responseFromCache = await caches.match(request)
@@ -129,18 +130,23 @@ function matchRoute(url) {
   return false
 }
 
-function getIndexUrl() {
-  return location.origin + public_path + 'index.html'
+function getIndexUrl(url) {
+  return url.endsWith('/') ? url + 'index.html' : url + '/index.html'
 }
 
 self.addEventListener('fetch', function (event) {
-  if (event.request.url.indexOf(location.origin) >= 0) {
-    if (event.request.url.endsWith('.html') || event.request.url.indexOf('_nuxt') < 0) {
-      console.log('service worker', '1.0.294', event.request, event.request.url)
-      event.respondWith(networkFirst(event))
-    } else {
-      event.respondWith(cacheFirst(event))
+  try {
+    if (event.request.url.indexOf(location.origin) >= 0) {
+      const origin_url = event.request.url.split('?')[0]
+      if (event.request.url.endsWith('.html') || matchRoute(origin_url) || event.request.url.indexOf('assets') < 0) {
+        console.log('service worker', '1.0.297', event.request, event.request.url)
+        event.respondWith(networkFirst(event))
+      } else {
+        event.respondWith(cacheFirst(event))
+      }
     }
+  } catch (e) {
+    event.respondWith(networkFirst(event))
   }
 })
 
