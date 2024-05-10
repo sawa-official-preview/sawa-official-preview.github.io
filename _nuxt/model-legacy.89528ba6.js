@@ -1,1 +1,0 @@
-System.register(["./entry-legacy.be5109be.js"],(function(e,s){"use strict";var t,r,n;return{setters:[e=>{t=e.ca,r=e.c,n=e.a4}],execute:function(){e("setup",t("user-info",(()=>({exposed:{userInfo:r((()=>n().pay2User||{}))}}))))}}}));

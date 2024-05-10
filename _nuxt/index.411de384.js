@@ -1,1 +1,0 @@
-import{_ as e,t as _,v as n}from"./entry.0e8e42dd.js";const t={},c={class:"loading-c"};function o(s,d){return _(),n("div",c)}const r=e(t,[["render",o],["__scopeId","data-v-3b52b4dd"]]);export{r as C};

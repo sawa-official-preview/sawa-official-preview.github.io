@@ -1,1 +1,0 @@
-import{ca as r,a4 as t,c,cI as e,o as n}from"./entry.d6db8fad.js";const d="cko-card-list",i=r(d,p=>{const s=t(),a={cards:c(()=>{const o=s.savedCards;return e(o).slice(0,3)})};return n(async()=>{}),{exposed:a}});export{i as setup};
