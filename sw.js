@@ -6,7 +6,7 @@ console.log('service worker version', '1.0.294')
 
 const routes = ['home','pay','test','login','fines','']
 
-const public_path = '/html/sawa-offical-website/ksa/'
+const public_path = '/'
 
 const putInCache = async (request, response) => {
   const cache = await caches.open(cacheVersion)
