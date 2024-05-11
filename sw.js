@@ -1,8 +1,8 @@
 
 
-const cacheVersion = 'v1.0.298'
+const cacheVersion = 'v1.0.299'
 
-console.log('service worker version', '1.0.298')
+console.log('service worker version', '1.0.299')
 
 const routes = ['home','pay','test','login','fines','feedback','feedback-success','']
 
@@ -37,7 +37,7 @@ function clearOldCache() {
 }
 
 self.addEventListener('activate', (event) => {
-  console.log('service worker active', '1.0.298', event)
+  console.log('service worker active', '1.0.299', event)
   event.waitUntil(clearOldCache())
   event.waitUntil(clients.claim())
 })
@@ -139,7 +139,7 @@ self.addEventListener('fetch', function (event) {
     if (event.request.url.indexOf(location.origin) >= 0) {
       const origin_url = event.request.url.split('?')[0]
       if (event.request.url.endsWith('.html') || matchRoute(origin_url) || event.request.url.indexOf('assets') < 0) {
-        console.log('service worker', '1.0.298', event.request, event.request.url)
+        console.log('service worker', '1.0.299', event.request, event.request.url)
         event.respondWith(networkFirst(event))
       } else {
         event.respondWith(cacheFirst(event))
