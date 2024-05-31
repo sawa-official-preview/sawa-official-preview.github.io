@@ -1,8 +1,8 @@
 
 
-const cacheVersion = 'v1.0.303'
+const cacheVersion = 'v1.0.306'
 
-console.log('service worker version', '1.0.303')
+console.log('service worker version', '1.0.306')
 
 const routes = ['home','pay','test','login','fines','feedback','feedback-success','']
 
@@ -37,7 +37,7 @@ function clearOldCache() {
 }
 
 self.addEventListener('activate', (event) => {
-  console.log('service worker active', '1.0.303', event)
+  console.log('service worker active', '1.0.306', event)
   event.waitUntil(clearOldCache())
   event.waitUntil(clients.claim())
 })
@@ -138,8 +138,8 @@ self.addEventListener('fetch', function (event) {
   try {
     if (event.request.url.indexOf(location.origin) >= 0) {
       const origin_url = event.request.url.split('?')[0]
-      if (event.request.url.endsWith('.html') || matchRoute(origin_url) || event.request.url.indexOf('assets') < 0) {
-        console.log('service worker', '1.0.303', event.request, event.request.url)
+      if (event.request.url.endsWith('.html') || matchRoute(origin_url) || event.request.url.indexOf('assets') < 0 || event.request.url.indexOf('sawa_logo.ico') >= 0) {
+        console.log('service worker', '1.0.306')
         event.respondWith(networkFirst(event))
       } else {
         event.respondWith(cacheFirst(event))
